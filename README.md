@@ -109,66 +109,61 @@ cambridge = CSV.read("listings_cambridge.csv");
 # 2. Mathematical Model
 
 ##### Data: #####
-$\ p \quad := \quad$ number of people.  
-$\ c \quad := \quad$ number of couples (or simply pairs of people who can share a bed).   
-$\ r \quad := \quad$ minimum rating required for an Airbnb.  
-$\ n \quad := \quad$ number of listings.   
-$\ d \quad := \quad$ number of nights $\ i$.   
+<img src="https://render.githubusercontent.com/render/math?math=p \quad := \quad">number of people.  
+<img src="https://render.githubusercontent.com/render/math?math=c \quad := \quad">number of couples (or simply pairs of people who can share a bed).   
+<img src="https://render.githubusercontent.com/render/math?math=r \quad := \quad">minimum rating required for an Airbnb.  
+<img src="https://render.githubusercontent.com/render/math?math=n \quad := \quad">number of listings.   
+<img src="https://render.githubusercontent.com/render/math?math=d \quad := \quad">number of nights i.   
 
+<img src="https://render.githubusercontent.com/render/math?math=\lambda \quad := \quad">determines how much weight to give to the cost objective.  
+- The greater lambda is, the more weight is give to the cost objective (and less to the distance objective).  
+- The closer lambda is to zero, the less weight is give to cost (and more to the distance objective).
 
-$\ \lambda \quad := \quad$ determines how much weight to give to the cost objective.  
-- The greater $\ \lambda$ is, the more weight is give to the cost objective (and less to the distance objective).  
-- The closer $\ \lambda$ is to zero, the less weight is give to cost (and more to the distance objective).
+<img src="https://render.githubusercontent.com/render/math?math=D_{ij}\quad := \quad">distance from listings j to listing i in kilometers.  
+<img src="https://render.githubusercontent.com/render/math?math=P_{i} \quad := \quad">price per night for listing i.  
+<img src="https://render.githubusercontent.com/render/math?math=C_{i} \quad := \quad">cleaning fee for listing i  
+<img src="https://render.githubusercontent.com/render/math?math=A_{i} \quad := \quad">number of people that listing i accomodates.  
+<img src="https://render.githubusercontent.com/render/math?math=B_{i} \quad := \quad">number of beds at listing i.  
+<img src="https://render.githubusercontent.com/render/math?math=R_{i} \quad := \quad">rating (out of 100) for listing j.   
+<img src="https://render.githubusercontent.com/render/math?math=M_{i} \quad := \quad">min number of nights listing i must be booked for.  
 
-
-$\ D_{ij}\quad := \quad$ distance from listings $\ j$ to listing $\ i$ in kilometers.  
-$\ P_{i} \quad := \quad$ price per night for listing $\ i$.  
-$\ C_{i} \quad := \quad$ cleaning fee for listing $\ i$  
-$\ A_{i} \quad := \quad$ number of people that listing $\ i$ accomodates.  
-$\ B_{i} \quad := \quad$ number of beds at listing $\ i$.  
-$\ R_{i} \quad := \quad$ rating (out of 100) for listing $\ i$.   
-$\ M_{i} \quad := \quad$ min number of nights listing $\ i$ must be booked for .  
 
 
 ##### Decision Variables: #####
-Because it is not realistically feasible to select a fraction of an Airbnb, this problem requires a binary indicator variable, and is therefore a Mixed-Integer Problem. Beyond this indicator variable, there are not further decision variables needed for this model. 
+Because it is not realistically feasible to select a fraction of an Airbnb, this problem requires a binary indicator variable, and is therefore a Mixed-Integer Problem. Beyond this indicator variable, there are not further decision variables needed for this model.  
 
-$$
-x_{i} = 
+<img src="https://render.githubusercontent.com/render/math?math=x_{i} = 
 \begin{cases}
 1 \quad if\ listing\ i\ is\ selected \\
 0 \quad if\ otherwise
-\end{cases}
-$$
+\end{cases}">
+
 
 ##### Constraints: #####
-The selected Airbnbs as a whole must be able to accomodate everyone:
-$$
-\sum_{i=1}^{n} (x_{i} * A_{i}) ≥ p
-$$
+The selected Airbnbs as a whole must be able to accomodate everyone:  
+<img src="https://render.githubusercontent.com/render/math?math=x_{i} = 
+\sum_{i=1}^{n} (x_{i} * A_{i}) ≥ p">
 
-The selected Airbnbs as a whole must have enough beds for everyone (couples can share):
-$$
-\sum_{i=1}^{n} (x_{i} * B_{i}) ≥ p - c
-$$
+The selected Airbnbs as a whole must have enough beds for everyone (couples can share):  
+<img src="https://render.githubusercontent.com/render/math?math=x_{i} = 
+\sum_{i=1}^{n} (x_{i} * B_{i}) ≥ p - c">
 
-The rating of each selected Airbnb must be at least equal to the minimum:
-$$
-(x_{i} * (R_{i}) ≥ x_{i} * r
-$$
+The rating of each selected Airbnb must be at least equal to the minimum:  
+<img src="https://render.githubusercontent.com/render/math?math=x_{i} = 
+(x_{i} * (R_{i}) ≥ x_{i} * r">
 
-The the number of nights being spent at any Airbnb, must be at least equal to that Airbnb's minimum nights requirement:
-
-$$
-(x_{i} * (M_{i}) ≤ x_{i} * d
-$$
+The the number of nights being spent at any Airbnb, must be at least equal to that Airbnb's minimum nights requirement:  
+<img src="https://render.githubusercontent.com/render/math?math=x_{i} = 
+(x_{i} * (M_{i}) ≤ x_{i} * d">
 
 
 ##### Objective Function: #####
-The objective function has been broken down into it's main components, being the cost and distance objectives.
-$$
-\min_x (\lambda * \sum_{i=1}^{n} x_{i}* (d * P_{i} + C_{i}) + \sum_{i=1}^{n} \sum_{j=i+1}^{n} (x_{i} * x_{j}* D_{ij}))
-$$
+The objective function has been broken down into it's main components, being the cost and distance objectives:  
+<img src="https://render.githubusercontent.com/render/math?math=x_{i} = 
+\min_x (\lambda * \sum_{i=1}^{n} x_{i}* (d * P_{i} + C_{i}) %2B \sum_{i=1}^{n} \sum_{j=i %2B 1}^{n} (x_{i} * x_{j}* D_{ij}))">
+
+
+
 
 # 3. Solution
 
@@ -194,7 +189,7 @@ rating = append!(boston[:,12],cambridge[:,12])
 min_nights = append!(boston[:,14],cambridge[:,14]);
 ```
 
-Using the haversine formula the following section of code builds a distance matrix, where each $\ i,j $ entry is the distance between the ith and jth Airbnb. Because the $\ i,j $ entry equals the $\ i,j $ entry, only half of the matrix will be filled in, and when this matrix comes into play in the model, only that half will be used. This will prevent double counting of numbers, as well as speed up processing (if only by a small amount).
+Using the haversine formula the following section of code builds a distance matrix, where each i,j entry is the distance between the ith and jth Airbnb. Because the i,j entry equals the j,i entry, only half of the matrix will be filled in, and when this matrix comes into play in the model, only that half will be used. This will prevent double counting of numbers, as well as speed up processing (if only by a small amount).
 
 
 ```julia
