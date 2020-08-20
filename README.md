@@ -22,7 +22,7 @@ The goal of this project is to investigate how optimization could be used in a r
 
 The data for this project, which comes in CSV format, is sourced from a website called Inside Airbnb (http://insideairbnb.com/index.html), which regularly scrapes Airbnb data for 103 cities across the world. Because the sizes of cities vary greatly, the sizes of the respective data also vary greatly, with some cities having up to 50,000 listings. Due to limits on processing power, Boston (and Cambridge) was selected, which has relatively small numbers of listings: Boston with \~3.5k listings and Cambridge with \~1,000 listings.
 
-For each listing in a data set, there are 106 data fields. Many of the fields, such as "description" (a paragraph description of the listing) or "amenities" (a simple list of amenities), were deamed unusable for the project, as they are non-numeric values, and would be difficult or impossible to translate into measurable metrics. In the end, 13 fields were found to be useful for this project:
+For each listing in a data set, there are 106 data fields. Many of the fields, such as "description" (a paragraph description of the listing) or "amenities" (a simple list of amenities), were deamed unusable for the project, as they are non-numeric values, and would be difficult or impossible to translate into measurable metrics. In the end, 12 fields were found to be useful for this project:
 
 |Num | Field                     | Description/Use                       |
 |--- |:-------------             |:-------------                         |
@@ -69,7 +69,7 @@ haversine(lat1, long1, lat2, long2) =
 The number of people that an Airbnb accomodates does not equal the number of beds that it has. Therefore, the opmization models will need to take into account not only how many people need lodging, but how many couples there are (or really how many pairs of people who are willing to share a bed there are).
 
 ##### Note about rating:
-While most Airbnbs have been rated, there is a good portion that do not have ratings yet. In an effort to keep these listings under consideration by the model, while also not favoring them to heavily, they will all be artificially given a rating of 70. This will be done using the following piecewise function:
+While most Airbnbs have been rated, there is a good portion that do not have ratings yet. In an effort to keep these listings under consideration by the model, while also not favoring them to heavily, they will all be artificially given a rating of 70. A rating of 70 was intuitively chosen, because review scores tend to range from the 70s to the 90s. Therefore, a rating of 70 would be the bottom end of the rating scale for most listings. This artificial rating will be applied using the following piecewise function:
 
 
 ```julia
