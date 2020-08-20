@@ -141,12 +141,10 @@ Because it is not realistically feasible to select a fraction of an Airbnb, this
 
 ##### Constraints: #####
 The selected Airbnbs as a whole must be able to accomodate everyone:  
-<img src="https://render.githubusercontent.com/render/math?math={x_{i} = 
-\sum_{i=1}^{n} (x_{i} * A_{i}) ≥ p}">
+<img src="https://render.githubusercontent.com/render/math?math=x_{i} = \sum_{i=1}^{n} (x_{i} * A_{i}) ≥ p">
 
 The selected Airbnbs as a whole must have enough beds for everyone (couples can share):  
-<img src="https://render.githubusercontent.com/render/math?math=x_{i} = 
-\sum_{i=1}^{n} (x_{i} * B_{i}) ≥ p - c">
+<img src="https://render.githubusercontent.com/render/math?math=x_{i} = \sum_{i=1}^{n} (x_{i} * B_{i}) ≥ p - c">
 
 The rating of each selected Airbnb must be at least equal to the minimum:  
 <img src="https://render.githubusercontent.com/render/math?math=x_{i} = 
