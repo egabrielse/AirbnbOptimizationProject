@@ -132,11 +132,7 @@ cambridge = CSV.read("listings_cambridge.csv");
 ##### Decision Variables: #####
 Because it is not realistically feasible to select a fraction of an Airbnb, this problem requires a binary indicator variable, and is therefore a Mixed-Integer Problem. Beyond this indicator variable, there are not further decision variables needed for this model.  
 
-<img src="https://render.githubusercontent.com/render/math?math=x_{i} = 
-\begin{cases}
-1 \quad if\ listing\ i\ is\ selected \\
-0 \quad if\ otherwise
-\end{cases}">
+<img src="https://render.githubusercontent.com/render/math?math=x_{i} = \begin{cases} 1 \quad if\ listing\ i\ is\ selected \\ 0 \quad if\ otherwise \end{cases}">
 
 
 ##### Constraints: #####
@@ -147,18 +143,15 @@ The selected Airbnbs as a whole must have enough beds for everyone (couples can 
 <img src="https://render.githubusercontent.com/render/math?math=x_{i} = \sum_{i=1}^{n} (x_{i} * B_{i}) ≥ p - c">
 
 The rating of each selected Airbnb must be at least equal to the minimum:  
-<img src="https://render.githubusercontent.com/render/math?math=x_{i} = 
-(x_{i} * (R_{i}) ≥ x_{i} * r">
+<img src="https://render.githubusercontent.com/render/math?math=x_{i} = (x_{i} * (R_{i}) ≥ x_{i} * r">
 
 The the number of nights being spent at any Airbnb, must be at least equal to that Airbnb's minimum nights requirement:  
-<img src="https://render.githubusercontent.com/render/math?math=x_{i} = 
-(x_{i} * (M_{i}) ≤ x_{i} * d">
+<img src="https://render.githubusercontent.com/render/math?math=x_{i} = (x_{i} * (M_{i}) ≤ x_{i} * d">
 
 
 ##### Objective Function: #####
 The objective function has been broken down into it's main components, being the cost and distance objectives:  
-<img src="https://render.githubusercontent.com/render/math?math=x_{i} = 
-\min_x (\lambda * \sum_{i=1}^{n} x_{i}* (d * P_{i} + C_{i}) %2B \sum_{i=1}^{n} \sum_{j=i %2B 1}^{n} (x_{i} * x_{j}* D_{ij}))">
+<img src="https://render.githubusercontent.com/render/math?math=x_{i} = \min_x (\lambda * \sum_{i=1}^{n} x_{i}* (d * P_{i} + C_{i}) %2B \sum_{i=1}^{n} \sum_{j=i %2B 1}^{n} (x_{i} * x_{j}* D_{ij}))">
 
 
 
